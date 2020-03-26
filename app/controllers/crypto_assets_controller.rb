@@ -16,7 +16,8 @@ class CryptoAssetsController < ApplicationController
         if portafolio.balance > total_cost
             if portafolio.crypto_assets.size == 0
                 new_coin = CryptoAsset.create(crypto_params)
-                render json: {new_coin: new_coin}
+                portafolio.update(balance: (portafolio.balance - total_cost))
+                render json: {new_coin: new_coin, portafolio: portafolio}
             else 
                 currency_obj = portafolio.crypto_assets.find_by(name: crypto_params[:name])
                 num_of_coins = currency_obj.units
