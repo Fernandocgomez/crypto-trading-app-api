@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+
+  # root
+  root to: "home#index"
+
   # Auth routes
   post '/login', to: 'auth#create'
+
 
   # Crypto assests routes
   post '/buy_crypto_by_unit', to: 'crypto_assets#buy_crypto_by_unit'
