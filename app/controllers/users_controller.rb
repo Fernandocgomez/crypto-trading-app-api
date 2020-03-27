@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    # skip_before_action :check_authentication, only: [:create]
+    skip_before_action :check_authentication, only: [:create]
 
     def show # Tested and working
         user = User.find_by(id: params[:id])
