@@ -5,8 +5,12 @@ class User < ApplicationRecord
     has_one :portafolio
 
     # Global validations
-    validates :username, :email, :password, :password_confirmation, presence: true
+    validates :username, :email, :password, :password_confirmation, :first_name, :last_name, presence: true
     validates :email, :username, uniqueness: true
+
+    # First_name & Last_name
+    validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/,
+        message: "only allows letters" }
     
 
     # username validation

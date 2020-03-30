@@ -10,7 +10,7 @@ class CryptoAssetsController < ApplicationController
         render json: crypto_asset.to_json()
     end
 
-    def buy_crypto_by_unit
+    def buy_crypto_by_unit # it takes the crypto_params 
         portafolio = Portafolio.find_by(id: crypto_params[:portafolio_id])
         total_cost = crypto_params[:units].to_f * crypto_params[:price_usd].to_f
         if portafolio.balance > total_cost
