@@ -16,16 +16,18 @@ ActiveRecord::Schema.define(version: 2020_03_25_220558) do
   enable_extension "plpgsql"
 
   create_table "crypto_assets", force: :cascade do |t|
+    t.string "cryptoId"
     t.string "name"
+    t.string "rank"
     t.string "symbol"
     t.string "supply"
-    t.string "max_supply"
-    t.string "market_cap_usd"
-    t.string "price_usd"
-    t.string "vwap_24_hr"
-    t.integer "units"
+    t.string "maxSupply"
+    t.string "marketCapUsd"
+    t.string "volumeUsd24Hr"
+    t.string "priceUsd"
+    t.string "changePercent24Hr"
+    t.float "crypto_Percentage"
     t.integer "portafolio_id"
-    t.string "crypto_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

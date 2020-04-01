@@ -6,9 +6,10 @@ class PortafoliosController < ApplicationController
     end
 
     def add_funds
-        portafolio = Portafolio.find(params[:id])
-        portafolio.update(balance: portafolio.balance + portafolio_params[:balance].to_f)
-        render json: {portafolio: PortafolioSerializer.new(portafolio), message: "funds were added"}
+        # portafolio = Portafolio.find(params[:id])
+        # portafolio.update(balance: portafolio.balance + portafolio_params[:balance].to_f)
+        # render json: {portafolio: PortafolioSerializer.new(portafolio), message: "funds were added"}
+        
     end
 
     def update_price_on_portafolio 
