@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
 
-    before_action :check_authentication
+    # before_action :check_authentication
 
     def encode_token(playload)
         JWT.encode(playload, "tradeing", "HS256")

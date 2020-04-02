@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
-    skip_before_action :check_authentication, only: [:create]
+    # skip_before_action :check_authentication, only: [:create]
 
     def show # Tested and working
         user = User.find_by(id: params[:id])
-        render json: user.to_json(:only => [:id, :username, :email])
+        render json: user.to_json(:only => [:username, :email, :first_name, :last_name])
     end
 
     def create #Tested and working
