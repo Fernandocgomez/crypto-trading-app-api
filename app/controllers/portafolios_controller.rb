@@ -8,10 +8,17 @@ class PortafoliosController < ApplicationController
     # Tested and working
     # it takes :balance (format 10.99)
     # takes the portafolio id as url params 
+    # Put request
     def add_funds 
-        portafolio = Portafolio.find(params[:id])
-        portafolio.update(balance: portafolio.balance + portafolio_params[:balance].to_f)
-        render json: {portafolio: PortafolioSerializer.new(portafolio), message: "funds were added"}
+        if portafolio_params[:balance].to_f < 0 
+            render json: {portafolio: "no negative numbers are allowed"}, status: :not_acceptable
+
+        else
+            portafolio = Portafolio.find(params[:id])
+            portafolio.update(balance: portafolio.balance + portafolio_params[:balance].to_f)
+            render json: {portafolio: PortafolioSerializer.new(portafolio), message: "funds were added"}
+        end
+       
     end
 
 

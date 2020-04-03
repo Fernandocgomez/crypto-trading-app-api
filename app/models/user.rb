@@ -5,7 +5,8 @@ class User < ApplicationRecord
     has_one :portafolio
 
     # Global validations
-    validates :username, :email, :password, :password_confirmation, :first_name, :last_name, presence: true
+    validates :username, :email, :password, :first_name, :last_name, presence: true
+    validates :password_confirmation, presence: true, on: :create
     validates :email, :username, uniqueness: true
 
     # First_name & Last_name
@@ -27,7 +28,7 @@ class User < ApplicationRecord
     validates :email, 'valid_email_2/email': { disallow_subaddressing: true }
     validates :email, 'valid_email_2/email': { message: "is not a valid email" }
     validates :email, confirmation: true
-    validates :email_confirmation, presence: true
+    validates :email_confirmation, presence: true, on: :create
 
     # password validation 
     def password_requirements_are_met

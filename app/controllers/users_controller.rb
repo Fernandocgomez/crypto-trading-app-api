@@ -18,10 +18,25 @@ class UsersController < ApplicationController
         end
     end
 
+    def update 
+        user = User.find_by(id: params[:id])
+        user.assign_attributes(update_params)
+        if user.valid? 
+            user.update(update_params)
+            render json: user.to_json(:only => [:username, :email, :first_name, :last_name])
+        else 
+            render json: {error: user.errors.full_messages}, status: :not_acceptable
+        end
+    end
+
     private 
 
     def user_params
         params.permit(:username, :password, :password_confirmation, :email, :email_confirmation, :first_name, :last_name)
+    end
+
+    def update_params
+        params.permit(:username, :password, :email, :first_name, :last_name)
     end
 
 end
