@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :balance_trackings
   # root
   root to: "home#index"
 

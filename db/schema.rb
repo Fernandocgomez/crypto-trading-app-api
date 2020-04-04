@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_25_220558) do
+ActiveRecord::Schema.define(version: 2020_04_04_203408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "balance_trackings", force: :cascade do |t|
+    t.float "total"
+    t.integer "portafolio_id"
+    t.datetime "date_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "crypto_assets", force: :cascade do |t|
     t.string "cryptoId"
