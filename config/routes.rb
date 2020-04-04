@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   put '/sell_crypto/:id', to: 'crypto_assets#sell_crypto'
 
 
+  # Balance Tracking
+  post '/balance_tracking', to: 'balance_trackings#hourly_tracking'
+
+
   resources :crypto_assets, only: [:index, :show]
   resources :portafolios, only: [:show]
   resources :users, only: [:show, :create, :update]

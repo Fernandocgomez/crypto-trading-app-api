@@ -2,6 +2,7 @@ class AuthController < ApplicationController
 
   skip_before_action :check_authentication, only: [:create]
 
+  # This method will create a token when the user's username and password match with one on the data base. 
   def create
     user = User.find_by(username: params[:username])
 

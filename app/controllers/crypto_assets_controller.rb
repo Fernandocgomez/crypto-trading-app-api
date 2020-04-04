@@ -1,11 +1,7 @@
 class CryptoAssetsController < ApplicationController
 
-    def index # Tested and working
-        crypto_assets = CryptoAsset.all
-        render json: crypto_assets.to_json()
-    end
-
-    def show # Tested and working
+    # Tested and working
+    def show 
         crypto_asset = CryptoAsset.find_by(id: params[:id])
         render json: crypto_asset.to_json()
     end

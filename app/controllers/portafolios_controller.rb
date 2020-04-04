@@ -1,6 +1,8 @@
 class PortafoliosController < ApplicationController
 
-    def show # Tested and working
+    # Tested and working
+    # This method return one user based in its id
+    def show 
         portafolio = Portafolio.find_by(id: params[:id])
         render json: portafolio.to_json(:only => [:id, :name, :balance])
     end
@@ -9,6 +11,7 @@ class PortafoliosController < ApplicationController
     # it takes :balance (format 10.99)
     # takes the portafolio id as url params 
     # Put request
+    # This method adds funds to a portafolio based on its id
     def add_funds 
         if portafolio_params[:balance].to_f < 0 
             render json: {portafolio: "no negative numbers are allowed"}, status: :not_acceptable
@@ -25,6 +28,8 @@ class PortafoliosController < ApplicationController
     # Tested and working 
     # takes the id of the portafolio as url params
     # put method
+    # This method will update all the cryptos' prices assosited to a particular portafolio
+    # This method runs every time a user click on the the portafolio link on the Nav bar 
     def update_price_on_portafolio 
         portafolio = Portafolio.find(params[:id])
         return render json: {message: "You don't have any crypto assest"} if portafolio.crypto_assets.size == 0

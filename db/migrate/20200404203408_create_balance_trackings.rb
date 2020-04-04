@@ -3,7 +3,7 @@ class CreateBalanceTrackings < ActiveRecord::Migration[6.0]
     create_table :balance_trackings do |t|
       t.float :total
       t.integer :portafolio_id
-      t.datetime :date_time
+      t.string :date_time
       t.timestamps
     end
   end

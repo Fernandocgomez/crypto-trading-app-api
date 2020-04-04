@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_04_04_203408) do
   create_table "balance_trackings", force: :cascade do |t|
     t.float "total"
     t.integer "portafolio_id"
-    t.datetime "date_time"
+    t.string "date_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
