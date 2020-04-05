@@ -13,6 +13,7 @@ task :hourly_track => :environment do
             how_much_own = (latest_price * i.crypto_Percentage)/100
             all_own_in_usd << how_much_own
         end
-        BalanceTracking.create(total: all_own_in_usd.sum, portafolio_id: c.id, date_time: time)
+        formated_ammount = Money.from_amount(all_own_in_usd.sum).format 
+        BalanceTracking.create(total: formated_ammount, portafolio_id: c.id, date_time: time)
     end
 end

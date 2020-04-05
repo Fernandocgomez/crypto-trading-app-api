@@ -43,4 +43,4 @@ gem "active_model_serializers", "~> 0.10.7"
 gem "jwt", "~> 2.1"
 gem "valid_email2"
 gem 'httparty', '~> 0.13.7'
-
+gem 'money', '~> 6.7', '>= 6.7.1'
