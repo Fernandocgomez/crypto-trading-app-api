@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
 
   # Balance Tracking
-  post '/balance_tracking', to: 'balance_trackings#hourly_tracking'
+  get '/balance_tracking_data/:id', to: 'balance_trackings#portfolio_balance_tracking'
 
 
   resources :crypto_assets, only: [:index, :show]
