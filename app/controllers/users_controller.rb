@@ -14,7 +14,7 @@ class UsersController < ApplicationController
             user.save
             portafolio = Portafolio.create(name: "#{user.username}'s Portafolio", user_id: user.id, balance: 0.00)
             balance_tracking = BalanceTracking.create(total: 0.00, portafolio_id: portafolio.id, date_time: Time.now.in_time_zone("Central Time (US & Canada)").strftime('%a, %d %b %Y %H:%M:%S'))
-            render json: {user: UserSerializer.new(user), portafolio: PortafolioSerializer.new(portafolio)}, status: :created
+            render json: {user: UserSerializer.new(user), portafolio: PortafolioSerializer.new(portafolio), balanceTracker: BalanceTrackingSerializer.new(balance_tracking)}, status: :created
         else
             render json: {error: user.errors.full_messages}, status: :not_acceptable
         end

@@ -1,3 +1,3 @@
 class BalanceTrackingSerializer < ActiveModel::Serializer
-  attributes :id, :total
+  attributes :id, :total, :date_time
 end
