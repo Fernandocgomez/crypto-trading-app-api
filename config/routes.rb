@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   # Portafolio route
   put '/add_funds/:id', to: 'portafolios#add_funds'
-  put '/update_price_on_portafolio/:id', to: 'portafolios#update_price_on_portafolio'
+  put '/all_my_cryptos/:id', to: 'portafolios#all_my_cryptos'
   get '/available_crypto_balance_usd/:id', to: 'portafolios#available_crypto_balance_usd'
 
   # Crypto assests routes

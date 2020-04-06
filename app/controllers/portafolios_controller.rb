@@ -24,32 +24,6 @@ class PortafoliosController < ApplicationController
        
     end
 
-
-    # Tested and working 
-    # takes the id of the portafolio as url params
-    # put method
-    # This method will update all the cryptos' prices assosited to a particular portafolio
-    # This method runs every time a user click on the the portafolio link on the Nav bar 
-    def update_price_on_portafolio 
-        portafolio = Portafolio.find(params[:id])
-        return render json: {message: "You don't have any crypto assest"} if portafolio.crypto_assets.size == 0
-        for i in portafolio.crypto_assets
-            url = "https://api.coincap.io/v2/assets/#{i.cryptoId}"
-            response = HTTParty.get(url)
-            result = JSON.parse(response.body)
-            i.update(
-                supply: result.dig("data", "supply"), 
-                maxSupply: result.dig("data", "maxSupply"), 
-                marketCapUsd: result.dig("data", "marketCapUsd"),
-                priceUsd: result.dig("data", "priceUsd"),
-                changePercent24Hr: result.dig("data", "changePercent24Hr"),
-                rank: result.dig("data", "rank"),
-                volumeUsd24Hr: result.dig("data", "volumeUsd24Hr"),
-            )
-        end
-        render json: {my_crypto_assests: portafolio.crypto_assets}
-    end
-
     # Return the total balance of own cryptos in usd as a flot 
     # Get request 
     # Takes portafolio id
@@ -67,6 +41,31 @@ class PortafoliosController < ApplicationController
         end
         formated_ammount = all_own_in_usd.sum.round(2)
         render json: {crypto_balance_usd: formated_ammount}
+    end
+
+    # Tested and working 
+    # takes the id of the portafolio as url params
+    # put method
+    # This method will update all the cryptos' prices assosited to a particular portafolio
+    # This method runs every time a user click on the the portafolio link on the Nav bar 
+    def all_my_cryptos
+        portafolio = Portafolio.find(params[:id])
+        return render json: {message: "You don't have any crypto assest"} if portafolio.crypto_assets.size == 0
+        for i in portafolio.crypto_assets
+            url = "https://api.coincap.io/v2/assets/#{i.cryptoId}"
+            response = HTTParty.get(url)
+            result = JSON.parse(response.body)
+            i.update(
+                supply: result.dig("data", "supply"), 
+                maxSupply: result.dig("data", "maxSupply"), 
+                marketCapUsd: result.dig("data", "marketCapUsd"),
+                priceUsd: result.dig("data", "priceUsd"),
+                changePercent24Hr: result.dig("data", "changePercent24Hr"),
+                rank: result.dig("data", "rank"),
+                volumeUsd24Hr: result.dig("data", "volumeUsd24Hr"),
+            )
+        end
+        render json: {my_crypto_assests: portafolio.crypto_assets}
     end
 
     private 
