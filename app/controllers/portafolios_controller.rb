@@ -50,6 +50,25 @@ class PortafoliosController < ApplicationController
         render json: {my_crypto_assests: portafolio.crypto_assets}
     end
 
+    # Return the total balance of own cryptos in usd as a flot 
+    # Get request 
+    # Takes portafolio id
+    
+    def available_crypto_balance_usd 
+        portafolio = Portafolio.find(params[:id])
+        all_own_in_usd = []
+        for i in portafolio.crypto_assets
+            url = "https://api.coincap.io/v2/assets/#{i.cryptoId}"
+            response = HTTParty.get(url)
+            result = JSON.parse(response.body)
+            latest_price = result.dig("data", "priceUsd").to_f
+            how_much_own = (latest_price * i.crypto_Percentage)/100
+            all_own_in_usd << how_much_own
+        end
+        formated_ammount = all_own_in_usd.sum.round(2)
+        render json: {crypto_balance_usd: formated_ammount}
+    end
+
     private 
 
     def portafolio_params
