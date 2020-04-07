@@ -50,7 +50,7 @@ class PortafoliosController < ApplicationController
     # This method runs every time a user click on the the portafolio link on the Nav bar 
     def all_my_cryptos
         portafolio = Portafolio.find(params[:id])
-        return render json: {message: "You don't have any crypto assest"} if portafolio.crypto_assets.size == 0
+        return render json: {message: "You don't have any crypto asset"} if portafolio.crypto_assets.size == 0
         for i in portafolio.crypto_assets
             url = "https://api.coincap.io/v2/assets/#{i.cryptoId}"
             response = HTTParty.get(url)
