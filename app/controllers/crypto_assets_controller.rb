@@ -66,7 +66,6 @@ class CryptoAssetsController < ApplicationController
         crypto = CryptoAsset.find_by(id: params[:id])
         crypto.update(sell_crypto_params_update)
         amount_owned_usd = (crypto.crypto_Percentage * crypto.priceUsd.to_f)/100
-        byebug
         if sell_crypto_params[:ammount].to_f <= amount_owned_usd.round(2)
             if sell_crypto_params[:ammount].to_f == amount_owned_usd.round(2)
                 crypto.portafolio.update(balance: crypto.portafolio.balance + amount_owned_usd)
@@ -101,6 +100,4 @@ class CryptoAssetsController < ApplicationController
     def buy_crypto_ammount_params
         params.permit(:ammount_pass)
     end
-
-
 end
