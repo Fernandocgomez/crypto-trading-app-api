@@ -70,7 +70,7 @@ class CryptoAssetsController < ApplicationController
             if sell_crypto_params[:ammount].to_f == amount_owned_usd.round(2)
                 crypto.portafolio.update(balance: crypto.portafolio.balance + amount_owned_usd)
                 crypto.destroy
-                render json: {message: "100% of the crypto was sold"}
+                render json: {message_all: "100% of the crypto was sold"}
             else
                 new_ammount = amount_owned_usd - sell_crypto_params[:ammount].to_f
                 new_percentage = (new_ammount * 100)/crypto.priceUsd.to_f
